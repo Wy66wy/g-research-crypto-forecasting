@@ -1,0 +1,5 @@
+# Seconds-long run to check the plumbing
+name: quick_debug
+data: {data_dir: data}
+features: {return_windows: [1, 15], vol_windows: [15], use_cross_asset: true}
+train: {model: ridge, n_folds: 2, valid_minutes: 5000, output_dir: artifacts}

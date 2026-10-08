@@ -1,0 +1,31 @@
+# LightGBM with own and cross-asset features
+# Usage: python -m cryptoforecast.train --config configs/default.yaml
+
+name: lgbm
+
+data:
+  data_dir: data
+  filename: train.csv
+
+features:
+  return_windows: [1, 5, 15, 60]   # 15 matches the target horizon
+  vol_windows: [15, 60]
+  leader_windows: [1, 3, 5]        # lead-lag lives in the last few minutes
+  use_cross_asset: true
+  ffill_limit: 30                  # longest gap a price is carried across
+
+train:
+  model: lgbm
+  own_only: false
+  n_folds: 3
+  valid_minutes: 10080             # one week per fold
+  gap_minutes: 60                  # >= the target's 16-minute lookahead
+  warmup_minutes: 3750             # until the target's beta has formed
+  output_dir: artifacts
+
+lgbm_params:
+  n_estimators: 1000
+  learning_rate: 0.03
+  num_leaves: 31
+  min_child_samples: 500
+  feature_fraction: 0.7

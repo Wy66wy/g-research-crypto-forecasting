@@ -1,0 +1,30 @@
+# Data - never commit. The real file is ~3GB; the synthetic one is
+# regenerated with a single command.
+data/
+*.csv
+*.parquet
+
+# Model artifacts. Ignore the directory, not extensions: *.txt would
+# take requirements.txt with it.
+artifacts/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+venv/
+.venv/
+
+# Caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
